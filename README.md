@@ -3,7 +3,7 @@
 ## Functional specification:
 
 Travel Social Network.
-A web application to connect people who loves travel around the world.
+A web application to connect people who love to travel around the world.
 - Check and evaluate your visited cities.
 - Create your own travel world map.
 - Connect with friends.

@@ -1,0 +1,156 @@
+<div class="login-container">
+    <div class="container text-center">
+        <div class="logo-container col-md-9 col-md-offset-2 col-xs-9 col-xs-offset-2">
+            <img class="login-weblogo hidden-xs hidden-sm" src="img/travelerslogo_white.png"/>
+            <img class="login-weblogo-mobile visible-xs visible-sm" src="img/travelerslogo_white.png"/>
+            <a class="btn pull-right hidden-xs hidden-sm" role="button" id="login" href=""><img
+                    src="img/fb_200.png"></a>
+        </div>
+    </div>
+</div>
+<div class="site-wrapper hidden-xs">
+
+    <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+            <!-- Carousel
+    ================================================== -->
+            <div id="carousel-example-generic" class="carousel slide"
+                 data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0"
+                        class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="img/cover.jpg" alt="First slide">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h1>Welcome to Travelers</h1>
+                                <p>Log in to your account to start sharing your experiences
+                                    with friends.</p>
+                                <p>
+                                    <!--<fb:login-button show-faces="true" data-scope="email" data-auto-logout-link="true" max-rows="1"
+                                    size="medium"></fb:login-button>-->
+                                    <a class="btn" role="button" id="login" href=""><img
+                                            src="img/fb_404.png"></a>
+                                    <script>
+                                        //FB Login function
+                                        (function ($) {
+                                            $(function () {
+                                                $("#login img").on("click", function () {
+                                                    FB.login(function(response) {
+                                                        if (response.authResponse) {
+                                                            //_wdfb_notifyAndRedirect();
+                                                        }
+                                                    }, {scope: 'user_location'});
+                                                });
+                                            });
+                                        })(jQuery);
+                                    </script>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="img/cover2.jpg" alt="Second slide">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h1>Learn more about Travelers</h1>
+                                <p>Do you want to know the features of the site? Click on
+                                    Learn more</p>
+                                <p>
+                                    <a class="btn btn-lg btn-danger" data-toggle="modal"
+                                       href="#learnmoreModal" role="button">Learn more</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="img/cover3.jpg" alt="Third slide">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h1>Contact us</h1>
+                                <p>If you have any doubt about the site or you want some
+                                    answers for any problem. Click here and get in touch with us.</p>
+                                <p>
+                                    <a class="btn btn-lg btn-danger" href="#" role="button">Contact</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic"
+               data-slide="prev"> <span
+                    class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control"
+                    data-slide="next"> <span
+                class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+
+            <!-- Modal Learn More -->
+            <div class="modal fade" id="learnmoreModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            <h4 class="modal-title lead" id="myModalLabel">Learn more
+                                about us</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="lead">We use Facebook to create the accounts for
+                                our users. When you click the Log In button you will create an
+                                account in Travelers using your Facebook account information.</p>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="visible-xs">
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="img/cover-iphone.jpg" alt="First slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Welcome to Travelers</h1>
+                    <p>Log in to your account to start sharing your experiences
+                        with friends.</p>
+                    <p>
+                        <a class="btn center-block" role="button" id="login" href=""><img
+                            src="img/fb_200.png"></a>
+                        <script>
+                            //FB Login function
+                            (function ($) {
+                                $(function () {
+                                    $("#login img").on("click", function () {
+                                        FB.login(function(response) {
+                                            if (response.authResponse) {
+                                                //_wdfb_notifyAndRedirect();
+                                            }
+                                        }, {scope: 'user_location'});
+                                    });
+                                });
+                            })(jQuery);
+                        </script>
+                    </p>
+                </div>
+            </div>
+        </div>
+</div>

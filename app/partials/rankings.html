@@ -1,0 +1,208 @@
+<!--Template for the user search results-->
+<script type="text/ng-template" id="customTemplate.html">
+    <a ng-href="#/{{match.model.id}}">
+        <img ng-src="http://graph.facebook.com/{{match.model.id}}/picture" width="23">
+        <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+    </a>
+</script>
+
+<!--Template for the city search results-->
+<script type="text/ng-template" id="customTemplateCity.html">
+  <a ng-click="showCity(match)">
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+  </a>
+</script>
+
+<!--Nav bar-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a ng-href="#/{{ownId}}"><img class="img-responsive weblogo" src="img/travelerslogo_white.png"/></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navHeaderCollapse">
+            <ul class="col-xs-9 col-sm-3 col-md-3 nav navbar-nav">
+                <li class="col-xs-6">
+                    <a ng-href="#/{{ownId}}">
+                        <span class="glyphicon glyphicon-home"></span> Home
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#/{{ownId}}/rankings" class="hidden-xs">
+                        <span class="glyphicon glyphicon-stats"></span> Rankings
+                    </a>
+                    <a href="#/{{ownId}}/rankings" class="visible-xs col-xs-6">
+                        <span class="glyphicon glyphicon-stats"></span> Rankings
+                    </a>
+                </li>
+            </ul>
+            <div class="col-xs-3 visible-xs">
+                <button type="button" class="btn btn-danger" id="logout"><i class="fa fa-sign-out"></i> Sign out</button>
+            </div>
+            <div class="col-sm-2 col-md-2 pull-right col-right header-right hidden-xs" ng-controller="DropdownCtrl">
+                <!-- user-popup -->
+                <div class="user pull-right dropdown" on-toggle="toggled(open)">
+                    <a class="user-link dropdown-toggle" data-toggle="dropdown" href="">
+                        <img class="img-circle" ng-src="{{own_img}}">
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="" id="logout_md"><i class="fa fa-sign-out"></i> Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-5 hidden-xs" ng-controller="TypeaheadCtrl">
+                <div class="col-sm-10 col-md-10 form-group" role="search">
+                    <input type="text" ng-model="asyncSelected" placeholder="Search for Friends" typeahead="friend as friend.name for friend in getFriendList($viewValue) | filter:{name:$viewValue} | limitTo: 5" typeahead-loading="loadingFriends" typeahead-template-url="customTemplate.html" typeahead-on-select="selectedFriend($item)" class="form-control">
+                </div>
+                <div class="col-sm-2 col-md-2 form-group navbar-form hidden-xs hidden-sm">
+                    <i ng-show="loadingFriends" class="fa fa-spinner fa-spin"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-5 visible-xs" ng-controller="TypeaheadCtrl">
+            <div class="col-sm-10 col-md-10 form-group" role="search">
+                <input type="text" ng-model="asyncSelected" placeholder="Search for Friends" typeahead="friend as friend.name for friend in getFriendList($viewValue) | filter:{name:$viewValue} | limitTo: 5" typeahead-loading="loadingFriends" typeahead-template-url="customTemplate.html" typeahead-on-select="selectedFriend($item)" class="form-control">
+            </div>
+            <div class="col-sm-2 col-md-2 form-group navbar-form hidden-xs hidden-sm">
+                <i ng-show="loadingFriends" class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function ($) {
+            $(function () {
+                $("#logout").click(function () {
+                    FB.logout(function(response) {
+                        localStorage.removeItem("fbToken");
+                        localStorage.removeItem("fbId");
+                        window.location.href="#/login";
+                    });
+                });
+                $("#logout_md").click(function () {
+                    FB.logout(function(response) {
+                        localStorage.removeItem("fbToken");
+                        localStorage.removeItem("fbId");
+                        window.location.href="#/login";
+                    });
+                });
+            });
+        })(jQuery);
+    </script>
+</div><!--/.nav-collapse -->
+<br>
+<br>
+<br>
+<div class="container">
+    <div>
+        <alert ng-repeat="alert in alerts" type="danger" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+    <!--row Search-->
+    <div class="row">
+        <div class="col-md-2 col-lg-2 hidden-xs">
+        </div>
+        <div class="visible-xs">
+            </br>
+            </br>
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <input type="text" ng-model="asyncCitiesSelected" placeholder="Search a city" typeahead="address as address.formatted_name for address in getLocation($viewValue) | limitTo:5" typeahead-on-select="showCity($item)" typeahead-template-url="customTemplateCity.html" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-2 hidden-xs">
+        </div>
+    </div>
+    <div ng-hide="showCityPanel">
+
+        <div class="col-md-2 col-lg-2">
+        </div>
+        <div class="global-ranking container panel col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <!--Box title-->
+            <div class="background-title">
+
+                <div class="title-text text-center">Global Ranking</div>
+                <div class="trophy-icon center-block"></div>
+            </div>
+            <!--Content-->
+            <div class="ranking-row panel-body" ng-hide="(ranking | gt0: city.mark).length>0">
+                <div class="ranking-row-empty">The global ranking is still empty, be the first and rate your city!</div>
+            </div>
+            <div class="ranking-row panel-body" ng-repeat="city in ranking | orderBy: ['-rankingmark', 'name'] | limitTo: 10 | gt0: city.mark">
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ranking-row-position">#{{$index + 1}}</div>
+                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img ng-show="city.image != null" class="img-responsive" ng-src="{{city.image}}" width="150px"/></div>
+                <div class="col-xs-5 col-sm-5 col-md-7 col-lg-7 ranking-row-city">{{city.name}}, {{city.country}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    <span class="glyphicon glyphicon-eye-close" ng-hide="city.voted"></span>
+                    <span class="glyphicon glyphicon-eye-open" ng-show="city.voted"></span>
+                </div>
+                <div class="col-xs-1 col-sm-2 col-md-1 col-lg-1 ranking-row-high-rate" ng-show="city.mark >= 9">{{city.mark}}</div>
+                <div class="col-xs-1 col-sm-2 col-md-1 col-lg-1 ranking-row-good-rate" ng-show="city.mark >= 7 && city.mark < 9">{{city.mark}}</div>
+                <div class="col-xs-1 col-sm-2 col-md-1 col-lg-1 ranking-row-passed-rate" ng-show="city.mark >= 5 && city.mark < 7">{{city.mark}}</div>
+                <div class="col-xs-1 col-sm-2 col-md-1 col-lg-1 ranking-row-low-rate" ng-show="city.mark < 5">{{city.mark}}</div>
+            </div>
+        </div>
+        <div class="col-md-3 col-lg-3">
+        </div>
+    </div>
+
+    <!-- Hidden city panel-->
+    <div ng-show="showCityPanel">
+        <div class="row">
+            <a class="pull-left" ng-click="showRankings()"> <i class="fa fa-arrow-left"></i> Back to rankings</a>
+        </div>
+        <!--row City Info-->
+        <div class="row city-panel panel">
+            <div class="city-info-left col-md-4 col-lg-4">
+                <div class="city-name">
+                    {{city_name}}
+                </div>
+                <div class="country">
+                    {{city_country}}
+                    <img class="country-flag" ng-src="{{country_flag}}" />
+                </div>
+                <!--Rating and average-->
+                <div class="rating col-md-10 col-lg-10" ng-init="rate=0">
+                    <rating value="rate" ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar=null" ng-click="setRating()"></rating>
+                    <span class="label" ng-class="{'label-danger': percent<5, 'label-warning': percent>=5 && percent<7, 'label-info': percent>=7 && percent<9, 'label-success': percent>=9}" ng-show="overStar && !isReadonly" ng-click="vote()">{{percent}}</span>
+                    <div>
+                        <h5>
+                            <small>
+                                {{city_name}} has {{city_votes}} votes.
+                            </small>
+                            <small ng-show="userHasVoted">You voted this city with {{user_vote}} points</small>
+                        </h5>
+                    </div>
+                </div>
+                <div class="average-panel col-md-2 col-lg-2 panel text-center">
+                    {{city_mark}}
+                </div>
+                <!--city image-->
+                <img class="city-image img-responsive" ng-src="{{city_image}}" />
+            </div>
+            <!--City Info Right-->
+            <div class="city-info-rigth col-md-8 col-lg-8 container">
+                <!--City Description-->
+                <div class="row">
+                    <div class="city-description">
+                        <p>
+                            {{city_text}}
+                        </p>
+                        <a target="_blank" ng-href="http://en.wikipedia.org/wiki/{{city_name}}, {{city_country}}">Read more in Wikipedia</a>
+                    </div>
+                </div>
+                <!--Map-->
+                <div class="map row">
+                    <google-map class="city_map" center="map.center" zoom="map.zoom" draggable="false">
+                        <marker coords='coords'></marker>
+                    </google-map>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

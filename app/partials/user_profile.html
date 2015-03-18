@@ -1,0 +1,215 @@
+<!--Template for the search results-->
+<script type="text/ng-template" id="customTemplate.html">
+    <a ng-href="#/{{match.model.id}}">
+        <img ng-src="http://graph.facebook.com/{{match.model.id}}/picture" width="23">
+        <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+    </a>
+</script>
+
+<div class="container">
+  <button class="navbar-toggle" data-toggle="collapse"
+  data-target=".navHeaderCollapse">
+  <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+  class="icon-bar"></span>
+</button>
+
+<!--Nav bar-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a ng-href="#/{{ownId}}"><img class="img-responsive weblogo" src="img/travelerslogo_white.png"/></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navHeaderCollapse">
+            <ul class="col-xs-9 col-sm-3 col-md-3 nav navbar-nav">
+                <li ng-show="ownId == id" class="active col-xs-6">
+                    <a ng-href="#/{{ownId}}">
+                        <span class="glyphicon glyphicon-home"></span> Home
+                    </a>
+                </li>
+                <li ng-hide="ownId == id">
+                    <a ng-href="#/{{ownId}}">
+                        <span class="glyphicon glyphicon-home"></span> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#/{{ownId}}/rankings" class="hidden-xs">
+                        <span class="glyphicon glyphicon-stats"></span> Rankings
+                    </a>
+                    <a href="#/{{ownId}}/rankings" class="visible-xs col-xs-6">
+                        <span class="glyphicon glyphicon-stats"></span> Rankings
+                    </a>
+                </li>
+            </ul>
+            <div class="col-xs-3 visible-xs">
+                <button type="button" class="btn btn-danger" id="logout"><i class="fa fa-sign-out"></i> Sign out</button>
+            </div>
+            <div class="col-sm-2 col-md-2 pull-right col-right header-right hidden-xs" ng-controller="DropdownCtrl">
+                <!-- user-popup -->
+                <div class="user pull-right dropdown" on-toggle="toggled(open)">
+                    <a class="user-link dropdown-toggle" data-toggle="dropdown" href="">
+                        <img class="img-circle" ng-src="{{own_img}}">
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="" id="logout_md"><i class="fa fa-sign-out"></i> Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-5 hidden-xs" ng-controller="TypeaheadCtrl">
+                <div class="col-sm-10 col-md-10 form-group" role="search">
+                    <input type="text" ng-model="asyncSelected" placeholder="Search for Friends" typeahead="friend as friend.name for friend in getFriendList($viewValue) | filter:{name:$viewValue} | limitTo: 5" typeahead-loading="loadingFriends" typeahead-template-url="customTemplate.html" typeahead-on-select="selectedFriend($item)" class="form-control">
+                </div>
+                <div class="col-sm-2 col-md-2 form-group navbar-form hidden-xs hidden-sm">
+                    <i ng-show="loadingFriends" class="fa fa-spinner fa-spin"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-5 visible-xs" ng-controller="TypeaheadCtrl">
+                <div class="col-sm-10 col-md-10 form-group" role="search">
+                    <input type="text" ng-model="asyncSelected" placeholder="Search for Friends" typeahead="friend as friend.name for friend in getFriendList($viewValue) | filter:{name:$viewValue} | limitTo: 5" typeahead-loading="loadingFriends" typeahead-template-url="customTemplate.html" typeahead-on-select="selectedFriend($item)" class="form-control">
+                </div>
+                <div class="col-sm-2 col-md-2 form-group navbar-form hidden-xs hidden-sm">
+                    <i ng-show="loadingFriends" class="fa fa-spinner fa-spin"></i>
+                </div>
+            </div>
+    </div>
+    <script>
+        (function ($) {
+            $(function () {
+                $("#logout").click(function () {
+                    FB.logout(function(response) {
+                        localStorage.removeItem("fbToken");
+                        localStorage.removeItem("fbId");
+                        window.location.href="#/login";
+                    });
+                });
+                $("#logout_md").click(function () {
+                    FB.logout(function(response) {
+                        localStorage.removeItem("fbToken");
+                        localStorage.removeItem("fbId");
+                        window.location.href="#/login";
+                    });
+                });
+            });
+        })(jQuery);
+    </script>
+
+</div><!--/.nav-collapse -->
+</div>
+</div>
+</br>
+</br>
+</br>
+
+<div class="container">
+    <div>
+        <alert ng-repeat="alert in alerts" type="danger" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-lg-2 sidebar">
+            <div class="sidebarProfileCard">
+                <a ng-href="#/{{id}}" class="thumbnail hidden-xs hidden-sm"> <img ng-src="{{profile_img}}"></a>
+                <a ng-href="#/{{id}}" class="visible-xs col-xs-6"> <img ng-src="{{profile_img}}" width="150px"></a>
+                <a ng-href="#/{{id}}" class="visible-sm col-sm-8"> <img ng-src="{{profile_img}}" width="180px"></a>
+                <ul class="list-unstyled">
+                    <li><span class="glyphicon glyphicon-user"></span> {{name}}</li>
+                    <li><span class="glyphicon glyphicon-map-marker"></span> {{city_name}}</li>
+                    <li ng-show="cities.length>0"><span class="glyphicon glyphicon-globe"></span> {{cities.length}} cities visited</li>
+                </ul>
+            </div>
+            <br>
+            <br>
+            <!-- User ranking -->
+            <div class="sidebarUserRanking hidden-xs hidden-sm" ng-show="cities.length > 0">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading"><div class="glyphicon glyphicon-star"></div>{{firstname}}'s Ranking</div>
+
+                    <!-- Table -->
+                    <table class="table">
+                        <tbody>
+                            <tr ng-repeat="city in cities | orderBy: ['-vote', 'name'] | limitTo:3">
+                                <td>{{city.name}}</td>
+                                <td>{{city.vote}}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-10 col-lg-10 col-xs-11 dashboard">
+                <div class="row">
+                    <div class="col-md-8 col-lg-8 col-xs-12 map">
+                            <google-map center="map.center" zoom="map.zoom" draggable="true">
+                            <marker coords = 'coords' icon = 'mapicon'>
+                            <markers fit='true'>
+                                <marker ng-repeat="city in visited_cities" coords="city.coords">
+                                    <window isIconVisibleOnClick="false">
+                                        <div>
+                                            <h4 class="map_window">{{city.name}}</h4>
+                                            <p class="muted map_window">{{firstname}} has ranked this city with {{city.vote}} points</p>
+                                            </br>
+                                        </div>
+                                    </window>
+                                </marker>
+                             </markers>
+                    </google-map>
+                </a>
+            </div>
+            <div class="newsboard container panel col-md-4 col-lg-4 hidden-xs hidden-sm">
+                <!--Box title-->
+                <div class="newsboard-header">
+                    <div class="title-text text-center">Last news</div>
+                </div>
+                <div class="newsboard-panel panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"  ng-show="news.length == 0">No news yet!</li>
+                        <li class="list-group-item" ng-repeat="item in news | limitTo:5">{{item.message}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <!--New message area-->
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 container center-block" style="padding-bottom: 20px">
+                <a class="col-md-1 col-lg-1 col-xs-3 col-sm-2 pull-left" ng-href="#/{{ownId}}">
+                    <img class="media-object" ng-src="http://graph.facebook.com/{{ownId}}/picture">
+                </a>
+                <div class="col-md-6 col-lg-7 col-sm-7 col-xs-9">
+                    <textarea class="form-control" rows="3" placeholder="Write on {{firstname}}'s wall" ng-model="message_text"></textarea>
+                </div>
+                <div class="col-md-1 col-lg-1 col-sm-1 col-xs-4" style="float: left; margin-bottom: auto; margin-top: auto">
+                    <button type="button" class="btn btn-danger" style="margin-top: auto; margin-bottom: auto" ng-click="postmessage()">
+                        Send
+                    </button>
+                </div>
+            </div>
+            <!--Comments list area-->
+            <ul class="col-lg-10 col-md-10 col-sm-10 col-xs-10 media-list comments-thread">
+                <li class="media" ng-repeat="message in wall_messages | orderBy:[time]">
+                    <a class="pull-left col-md-1 col-xs-2" ng-href="#/{{message.fromId}}">
+                        <img class="media-object" ng-src="http://graph.facebook.com/{{message.fromId}}/picture">
+                    </a>
+                    <div class="media-body col-lg-10 col-md-10 col-xs-8">
+                        <h4 class="media-heading">{{message.fromName}}
+                            <small>{{message.time}}</small>
+                            <button type="button" class="btn btn-danger btn-xs" ng-show="{{message.showDelete}}" ng-click="deletemessage(message.message_id)">Delete</button>
+                        </h4>
+                        {{message.message}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,18 @@
+{
+  "name": "angular-travelers",
+  "description": "A social web for travelers",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "1.2.x",
+    "bootstrap": "~3.1.1",
+    "angular-route": "~1.2.15",
+    "angular-resource": "~1.2.15",
+    "jquery": "1.10.2",
+    "Font-Awesome": "*",
+    "underscore": "*",
+    "angular-google-maps": "*",
+    "angular-cookies": "*",
+    "angular-bootstrap" : "0.10.0",
+    "angular-socket-io": "0.3.0"
+  }
+}

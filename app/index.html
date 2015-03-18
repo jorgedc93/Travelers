@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="travelersApp"></html>
+<head>
+  <meta charset="utf-8">
+  <!-- Bootstrap mobile -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Travelers</title>
+
+  <!-- Style -->
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../bower_components/Font-Awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" id="css">
+
+  <!-- Frameworks and plugins used in travelers -->
+  <script src="../bower_components/jquery/jquery.min.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+  <script src="../bower_components/angular-route/angular-route.min.js"></script>
+  <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
+  <script src="../bower_components/angular-socket-io/socket.js"></script>
+  <script src='//maps.googleapis.com/maps/api/js??key=AIzaSyBjhGn5F7_mGO2p5n7LAsJV5d2RY17UNCY&amp;sensor=false'></script>
+  <script src='../bower_components/underscore/underscore.js'></script>
+  <script src='../bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+  <script src='../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'></script>
+  <script src="js/angular-local-storage.js"></script>
+  
+  <!-- AngularJs app.js -->
+  <script src="js/app.js"></script>
+
+  <!-- Travellers Controllers -->
+  <script src="js/Controllers/DropdownController.js"></script>
+  <script src="js/Controllers/LoginController.js"></script>
+  <script src="js/Controllers/RankingsController.js"></script>
+  <script src="js/Controllers/TypeAheadController.js"></script>
+  <script src="js/Controllers/UserProfileController.js"></script>
+
+  <!-- Travelers Services -->
+  <script src="js/Services/DatabaseServices.js"></script>
+  <script src="js/Services/Filters.js"></script>
+  <script src="js/Services/ServiceAuthentication.js"></script>
+  <script src="js/Services/ServiceDiacritics.js"></script>
+  <script src="js/Services/SessionService.js"></script>
+  <script src="js/Services/SocketsServices.js"></script>
+  <script src="js/Services/ServiceAlerts.js"></script>
+
+</head>
+<body>
+<div id="fb-root">
+
+</div>
+
+<div ng-view></div>
+
+</body>

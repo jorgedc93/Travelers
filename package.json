@@ -1,0 +1,19 @@
+{
+  "name": "travelers",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A social web for travelers",
+  "devDependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "mongodb": "*",
+    "mongoskin": "*",
+    "bower": "*",
+    "serve-favicon": "*",
+    "socket.io": "*"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "node server.js"
+  }
+}

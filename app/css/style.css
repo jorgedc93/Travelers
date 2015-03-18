@@ -1,0 +1,361 @@
+/************
+*
+* LOGIN
+*
+*************/
+
+.login-container{
+    background-color: #e74c3c;
+}
+
+.login-container{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.logo-container{
+    margin-bottom: 10px;
+}
+
+.login-button-container{
+
+}
+
+.login-weblogo{
+    height: 100%;
+    width: 100%;
+    height: 115px;
+    width: 600px;
+
+}
+
+.login-weblogo-mobile{
+    height: 50px;
+    width: 250px;
+    float: center;
+
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    height: 500px;
+    background-color: #e74c3c;
+}
+.carousel-inner > .item > img {
+    width: 100%;
+    height: 100%;
+}
+
+.lead {
+    color: black;
+}
+
+
+/************
+*
+* WEBSITE
+*
+*************/
+.navbar-inverse {
+    background-color: #e74c3c;
+    border-color: #c0392b;
+}
+.navbar-inverse .navbar-brand {
+    color: #ecf0f1;
+}
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    color: #ffbbbc;
+}
+.navbar-inverse .navbar-text {
+    color: #ecf0f1;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #ecf0f1;
+    color: #ffffff;
+}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: #ffbbbc;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #ffbbbc;
+    background-color: #c0392b;
+}
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #ffbbbc;
+    background-color: #c0392b;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: #c0392b;
+}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #c0392b;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #ecf0f1;
+}
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+    border-color: #ecf0f1;
+}
+.navbar-inverse .navbar-link {
+    color: #ecf0f1;
+}
+.navbar-inverse .navbar-link:hover {
+    color: #ffbbbc;
+}
+
+@media (max-width: 767px) {
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+        color: #ecf0f1;
+    }
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #ffbbbc;
+    }
+    .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #ffbbbc;
+        background-color: #c0392b;
+    }
+}
+
+
+/*WEB LOGO & BASICS*/
+.weblogo{
+    width:150px;
+    height:50px;
+    max-height: 100%;
+    max-widtht: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+body{
+    background-image: url("../img/crossword.png");
+    height: 100%;
+}
+
+.form-group {
+    margin-top: 8px;
+    margin-bottom: 7px;
+}
+
+@media (max-width: 480px) {
+    .dropdown {
+        margin-top: 5px;
+    }
+    .navbar-nav  li {
+        display: inline;
+    }
+
+    .btn-danger {
+        margin-top: 12px;
+    }
+}
+
+.dashboard{
+    padding-left: 50px;
+}
+
+.angular-google-map-container {
+    height: 300px;
+}
+
+.city_map{
+    height: 100%;
+    width: 100%;
+}
+
+.map.angular-google-map-container{
+    max-height: 200px;
+    max-width: 600px;
+}
+
+.map_window {
+    color: #e74c3c;
+}
+
+/*Change jumbotron background*/
+.jumbotron {
+    background-color: white;
+}
+/* UI Bootstrap style */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+/*Newsboard*/
+.newsboard{
+    padding: 0;
+}
+
+.newsboard-header{
+    background-color: #e74c3c;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.newsboard-panel{
+    padding: 0;
+}
+
+.list-group{
+    margin-bottom: 0;
+}
+
+.list-group-item:first-child {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.newsboard-panel .list-group-item{
+    padding: 5px 10px 5px 10px;
+    font-size: 14px;
+    color: rgb( 158, 158, 158 );
+    text-align: left;
+}
+
+/* RANKINGS.HTML STYLE */
+
+/*City info*/
+.panel.city-panel {
+    padding-top: 25px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 10px;
+    border-style:solid;
+    border-width:1px;
+    border-color: #e74c3c;
+}
+
+.city-info-left{
+    padding: 0;
+    padding-right: 15px;
+}
+
+.city-name{
+    text-align: left;
+    font-size: 40px;
+    font: "Tahoma";
+}
+.country{
+    color: rgb( 158, 158, 158 );
+    text-align: left;
+    font-size: 20px;
+    font: "Tahoma";
+    float: left;
+    clear: right;
+}
+.country-flag{
+    height: 15px;
+    width: 30px;
+}
+
+.city-image{
+    vertical-align: middle;
+    max-height: 250px;
+    max-width: 350px;
+    height: auto;
+    width: auto;
+    margin-top: auto;
+    margin-bottom: 50px;
+    padding-top: 20px;
+
+}
+
+.rating{
+    clear: both;
+    padding-top: 20px;
+}
+
+.average-panel{
+    float: right;
+    padding-top: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.city-info-rigth{
+    margin-top: 50px;
+}
+
+.city-map{
+    max-height: 200px;
+    padding-bottom: 15px;
+}
+
+/*GLOBAL RANKING*/
+.global-ranking{
+    background-color: #ffffff;
+    padding: 0;
+}
+
+.background-title{
+    background-color: #e74c3c;
+    height: 54px;
+    width: auto;
+}
+
+.title-text{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.trophy-icon {
+    background-image: url("../img/trophy-icon.png");
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+
+}
+
+
+.line1{
+    background-image: url("../img/line1.png");
+    width: 400px;
+    height: 1px;
+}
+
+
+.ranking-row{
+    min-height: 30px;
+}
+
+.ranking-row-city{
+    color: rgb( 158, 158, 158 );
+    text-align: left;
+}
+.ranking-row-low-rate {
+    color: #d9534f;
+    font-weight: bold;
+    text-align: left;
+}
+.ranking-row-passed-rate {
+    color: #f0ad4e;
+    font-weight: bold;
+    text-align: left;
+}
+.ranking-row-good-rate {
+    color: #5bc0de;
+    font-weight: bold;
+    text-align: left;
+}
+.ranking-row-high-rate {
+    color: #5cb85c;
+    font-weight: bold;
+    text-align: left;
+}
+.ranking-row-empty{
+    color: rgb( 158, 158, 158 );
+    text-align: center;
+}
+

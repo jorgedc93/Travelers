@@ -1,0 +1,4 @@
+data/
+npm-debug.log
+node_modules/
+app/bower_components/
